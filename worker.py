@@ -27,7 +27,14 @@ def callback(ch, method, _, body):
         print("Error:", e)
 
 def main():
-    c = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    # Get RabbitMQ URL from environment variable or use localhost as fallback
+    rabbitmq_url = os.getenv('RABBITMQ_URL', 'amqp://localhost')
+    
+    # Parse the URL to get connection parameters
+    params = pika.URLParameters(rabbitmq_url)
+    
+    # Connect to RabbitMQ
+    c = pika.BlockingConnection(params)
     ch = c.channel()
     ch.queue_declare(queue='notifications', durable=True)
     ch.basic_qos(prefetch_count=1)

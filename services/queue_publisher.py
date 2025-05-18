@@ -1,7 +1,15 @@
 import pika, json
+import os
 
 def publish_to_queue(data):
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    # Get RabbitMQ URL from environment variable or use localhost as fallback
+    rabbitmq_url = os.getenv('RABBITMQ_URL', 'amqp://localhost')
+    
+    # Parse the URL to get connection parameters
+    params = pika.URLParameters(rabbitmq_url)
+    
+    # Connect to RabbitMQ
+    connection = pika.BlockingConnection(params)
     channel = connection.channel()
 
     channel.queue_declare(queue='notifications', durable=True)

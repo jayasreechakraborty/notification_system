@@ -2,14 +2,61 @@ services:
   - type: web
     name: notification-service
     env: python
-    repo: https://github.com/jayasreechakraborty/notification_services 
+    repo: https://github.com/jayasreechakraborty/notification_system.git
     branch: main
     buildCommand: pip install -r requirements.txt
     startCommand: python -m uvicorn main:app --host 0.0.0.0 --port 10000
     envVars:
-      - key: EMAIL_HOST_USER
+      - key: EMAIL_HOST
         sync: false
-      - key: EMAIL_HOST_PASSWORD
+      - key: EMAIL_PORT
+        sync: false
+      - key: EMAIL_USERNAME
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: RABBITMQ_URL
+        sync: false
+      - key: PYTHONPATH
+        value: .
+        
+  - type: worker
+    name: notification-worker
+    env: python
+    repo: https://github.com/jayasreechakraborty/notification_system.git
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: python worker.py
+    envVars:
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        sync: false
+      - key: EMAIL_USERNAME
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: RABBITMQ_URL
         sync: false
       - key: PYTHONPATH
         value: .
