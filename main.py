@@ -6,8 +6,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
 from services.queue_publisher import publish_to_queue
 from services.in_app import get_user_messages
-from db.models import Base, engine
+# Import database components
+from db.database import engine
+from db.models import Base
 
+# Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
