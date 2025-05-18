@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+cred.py
+credd.py
+**/credd.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+env/
+venv/
+.vscode/
+notification_services_.git/

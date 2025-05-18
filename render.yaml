@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: notification-service
+    env: python
+    repo: https://github.com/jayasreechakraborty/notification_services 
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: PYTHONPATH
+        value: .
