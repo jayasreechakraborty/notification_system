@@ -1,4 +1,4 @@
-# Notification Service
+# Notification Service 
 
 A scalable, multi-channel notification system built with FastAPI, RabbitMQ, and SQLAlchemy. This service allows you to send notifications via email, SMS, and in-app channels through a unified API.
 
@@ -10,13 +10,18 @@ This notification service provides a centralized system for sending various type
 
 The system follows a message-driven architecture with the following components:
 
-1. **API Service (FastAPI)**: 
+1. **API Service (FastAPI)**:
+API Documentation (when running locally): http://localhost:8000/docs
+
+This is the Swagger UI documentation that FastAPI automatically generates
+It's available once you start your application with uvicorn main:app --reload
+  
    - Handles incoming HTTP requests
    - Validates notification data
    - Publishes messages to RabbitMQ queue
    - Provides endpoints for retrieving in-app notifications
 
-2. **Worker Service**:
+2.worker Service**:
    - Consumes messages from RabbitMQ queue
    - Processes notifications based on their type
    - Sends emails, SMS, or stores in-app notifications
@@ -562,7 +567,8 @@ curl -X POST "http://localhost:8000/notify" \
 curl "http://localhost:8000/notifications/user123"
 ```
 
-## Deployment on Render
+## Deployment on Render 
+LINK TO THE DEPLOYED APPLICATION - https://notification-system-4m5j.onrender.com
 
 The project includes a `render.yaml` file for easy deployment on Render.com:
 
