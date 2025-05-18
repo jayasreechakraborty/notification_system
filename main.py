@@ -13,7 +13,23 @@ from db.models import Base
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(
+    title="Notification Service API",
+    description="API for sending email, SMS, and in-app notifications",
+    version="1.0.0"
+)
+
+@app.get("/")
+def read_root():
+    return {
+        "message": "Welcome to the Notification Service API",
+        "endpoints": {
+            "send_notification": "/notify",
+            "get_notifications": "/notifications/{user_id}",
+            "health_check": "/health",
+            "documentation": "/docs"
+        }
+    }
 
 class Notification(BaseModel):
     type: str  # "email", "sms", or "in_app"
