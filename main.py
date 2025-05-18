@@ -40,10 +40,20 @@ def get_notifications(user_id: str):
     messages = get_user_messages(user_id)
     return {"user_id": user_id, "messages": messages}
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 # To run the FastAPI app, use the command:      
 # uvicorn main:app --reload
 # This will start the server at http://localhost:8000
 # You can test the API using tools like Postman or curl.
 # Example curl command to send a notification:
 # curl -X POST "http://localhost:8000/notify" -H "Content-Type: application/json" -d '{"type": "email", "message": "Hello!", "email": "user@example.com"}'
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
 
