@@ -22,7 +22,7 @@ It's available once you start your application with- uvicorn main:app --reload
    - Publishes messages to RabbitMQ queue
    - Provides endpoints for retrieving in-app notifications
 
-2.worker Service**:
+2.**worker Service**:
    - Consumes messages from RabbitMQ queue
    - Processes notifications based on their type
    - Sends emails, SMS, or stores in-app notifications
