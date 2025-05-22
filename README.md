@@ -13,8 +13,9 @@ The system follows a message-driven architecture with the following components:
 1. **API Service (FastAPI)**:
 API Documentation (when running locally): http://localhost:8000/docs
 
-This is the Swagger UI documentation that FastAPI automatically generates
-It's available once you start your application with uvicorn main:app --reload
+This is the Swagger UI documentation that FastAPI automatically generates. 
+
+It's available once you start your application with- uvicorn main:app --reload
   
    - Handles incoming HTTP requests
    - Validates notification data
